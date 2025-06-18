@@ -1,6 +1,8 @@
 { pkgs, ... }: {
 	ids.gids.nixbld = 350;
 
+	system.primaryUser = "argus";
+
 	services.yabai = {
 		enable = true;
 		config = {
@@ -34,5 +36,4 @@
 	programs.zsh.enable = true;  # default shell on catalina
 
 	system.stateVersion = 4;
-	nixpkgs.hostPlatform = "aarch64-darwin";
 }

@@ -18,6 +18,13 @@
     	username = "argus";
     	system = "aarch64-darwin";
 	configuration = { pkgs, ... }: {
+	  users = {
+	    users.${username} = {
+	      home = "/Users/${username}";
+	      name = "${username}";
+	    };
+	  };
+	  nixpkgs.hostPlatform = system;
 	  # Set Git commit hash for darwin-version.
 	  system.configurationRevision = self.rev or self.dirtyRev or null;
 	};
@@ -26,23 +33,21 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."Ians-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      inherit system;
       modules = [
 	configuration
-        mac-app-util.homeManagerModules.default
-	home-manager.darwinModules.home-manager
-	({ ... }: {
-           home-manager.users.argus.imports = [
-             mac-app-util.homeManagerModules.default
-	    ./home.nix
-	    ({ ... }: {
-	      home = {
-	        inherit username;
-	        homeDirectory = "/Users/${username}";
-	      };
-	    })
-           ];
-         })
 	./configuration.nix
+        mac-app-util.darwinModules.default
+	home-manager.darwinModules.home-manager
+	{
+		nixpkgs = {
+			config = { allowUnfree = true; };
+		};
+		home-manager.useGlobalPkgs = true;
+		home-manager.useUserPackages = true;
+		home-manager.users.${username} = import ./home.nix;
+		home-manager.extraSpecialArgs = { inherit mac-app-util; inherit username; };
+	}
       ];
     };
 
