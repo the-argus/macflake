@@ -12,7 +12,7 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."Ians-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ ./home.nix ];
+      modules = [ ./configuration.nix ];
     };
 
     # Expose the package set, including overlays, for convenience.
