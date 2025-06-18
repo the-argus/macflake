@@ -126,10 +126,6 @@
     };
   };
 in {
-  home.sessionVariables = {
-    SUDO_ASKPASS = "${pkgs.myPackages.sudo-askpass}/bin/sudo-askpass";
-  };
-
   programs.starship = {
     enable = true;
     settings = {
@@ -186,30 +182,13 @@ in {
         # regular aliases
         nf = "neofetch";
         search = "nix search nixpkgs";
-        matrix = "tmatrix -c default -C yellow -s 60 -f 0.2,0.3 -g 10,20 -l 1,50 -t \"hello, ${username}.\"";
-        umatrix = "unimatrix -a -c yellow -f -s 95 -l aAcCgGkknnrR";
-        dvim = "XDG_CONFIG_HOME=/home/${username}/.local/src/ nvim"; # use my non-nix configuration for debugging
         fim = "nvim $(fd -t f | fzf)";
         vim = "nvim";
-        batt = "cat /sys/class/power_supply/BAT0/capacity";
 
-        # unused mostly
-        cageff = "cage \"/bin/firefox -p Unconfigured\"";
-        awesomedoc = "firefox ${pkgs.awesome.doc}/share/doc/awesome/doc/index.html & disown";
-        ix = "curl -F 'f:1=<-' ix.io";
         rm = "rm -i";
-        nocolor = ''sed "s/\x1B\[[0-9;]\{1,\}[A-Za-z]//g"'';
         sudo = "sudo -A";
-        all = "git commit -am";
         cd = "z";
-      }
-      // (pkgs.callPackage
-        ../../lib/home-manager/xorg.nix
-        {inherit config;})
-      .startxAliases
-      // (lib.optionalAttrs config.desktops.gnome.enable {
-        gnome = "dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY && XDG_SESSION_TYPE=wayland dbus-run-session -- gnome-shell --display-server --wayland";
-      });
+      };
 
     zplug = {
       enable = false;
@@ -306,67 +285,6 @@ in {
       {
         sudo du -k "$@" | sort -n
       }
-
-      function compress () {
-          ffmpeg \
-              -i "$1" \
-              -vcodec h264 \
-              -acodec mp2 \
-              COMPRESSED-$1;
-          }
-
-      function ytd () { youtube-dl -f bestvideo+bestaudio --merge-output-format mkv --all-subs --cookies ~/.scripts/youtube.com_cookies.txt "$1"; }
-
-      function record () {
-          ffmpeg -y \
-          -video_size 1920x1080 \
-          -framerate 24 -f x11grab -i :0.0 \
-          -f pulse -ac 2 -i default \
-          $HOME/Screenshots/screenrecord_`date '+%Y-%m-%d_%H-%M-%S'`.mp4 \
-          &> /tmp/screenrecord_`date '+%Y-%m-%d_%H-%M-%S'`.log
-      }
-
-      # makes files with special characters compatible with fat and exfat
-      function filecompat () {
-          if [[ "$1" == "" ]]; then
-            echo "provide a directory to make files compatible in."
-          fi
-          local total=0
-          for file in "$1"/*; do
-            if [[ -d $file ]]; then
-              continue
-            fi
-            # new_filename=$(echo $file | tr -dc '[:alnum:]\n\r')
-            new_filename=${"$\{file//[^[:alnum:]]/}"}
-            if [[ $file == $new_filename ]]; then
-              continue
-            fi
-            mv -- "$file" "$new_filename"
-            total=$((total + 1))
-          done
-
-          echo "renamed $total files."
-      }
-
-      function lock () {
-          sleep 0.2
-
-          ${pkgs.i3lock-fancy}/bin/i3lock-fancy -f "Fira-Code-Regular-Nerd-Font-Complete" -t "hello, argus."
-
-          pactl set-sink-mute @DEFAULT_SINK@ on
-          ~/.local/bin/volume.sh refresh
-      }
-
-      # CONFIG ----------------------------------------------------------------------
-
-      #
-      # DEER CONFIG
-      #
-      # autoload -U deer
-      # zle -N deer
-      # bindkey '\ek' deer
-      # zstyle ':deer:' height 35
-      # zstyle :deer: show_hidden yes
 
       eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 

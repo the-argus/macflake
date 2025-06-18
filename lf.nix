@@ -22,10 +22,6 @@ in {
       tabstop = 2;
       info = "size";
     };
-    previewer = {
-      source = "${pkgs.myPackages.lf-kitty-previewer}/bin/lf-kitty-previewer.sh";
-      keybinding = "i";
-    };
     extraConfig = ''
       set cleaner ${cleaner}
 
@@ -44,9 +40,6 @@ in {
     '';
 
     commands = {
-      open = "$set -f; ${pkgs.myPackages.rifle}/bin/rifle -p 0 $fx";
-      paste = ''${"$"}${pkgs.myPackages.cp-p}/bin/cp-p --lf-paste $id'';
-      trash = "${"$"}${pkgs.trash-cli}/bin/trash $fx";
       z = ''
         %{{
           # result="$(zoxide query --exclude $PWD $@)"
