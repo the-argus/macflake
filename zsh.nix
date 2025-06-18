@@ -250,10 +250,10 @@ in {
       }
 
       function ls () {
-        command ls --color=auto --group-directories-first $@
+        command ls --color=auto $@
       }
       function lsl () {
-      	command ls -la --color=auto --group-directories-first $@ | command grep "^d" && ls -la $1 | command grep -v "^d"
+      	command ls -la --color=auto $@ | command grep "^d" && ls -la $1 | command grep -v "^d"
       }
 
       function where () {
