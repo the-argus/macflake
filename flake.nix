@@ -13,33 +13,36 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util }:
   let
     	username = "argus";
     	system = "aarch64-darwin";
 	configuration = { pkgs, ... }: {
-		# Set Git commit hash for darwin-version.
-		system.configurationRevision = self.rev or self.dirtyRev or null;
+	  # Set Git commit hash for darwin-version.
+	  system.configurationRevision = self.rev or self.dirtyRev or null;
 	};
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."Ians-MacBook-Pro" = nix-darwin.lib.darwinSystem {
-      modules = [ ./configuration.nix ];
-    };
-
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
       modules = [
+	configuration
         mac-app-util.homeManagerModules.default
-	./home.nix
+	home-manager.darwinModules.home-manager
 	({ ... }: {
-	  home = {
-	    inherit username;
-	    homeDirectory = "/Users/${username}";
-	  };
-	})
+           home-manager.users.argus.imports = [
+             mac-app-util.homeManagerModules.default
+	    ./home.nix
+	    ({ ... }: {
+	      home = {
+	        inherit username;
+	        homeDirectory = "/Users/${username}";
+	      };
+	    })
+           ];
+         })
+	./configuration.nix
       ];
     };
 
