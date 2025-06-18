@@ -1,36 +1,33 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }: {
+	# List packages installed in system profile. To search by name, run:
+	# $ nix-env -qaP | grep wget
+	environment.systemPackages = with pkgs; [
+		neovim
+		vim
+		ripgrep
+		fd
+		tldr
+		starship
+		yabai
+	];
 
-{
-  home.username = "your-username";
-  home.homeDirectory = "/Users/your-username";
+	# Auto upgrade nix package 
+	# nix.package = pkgs.nix;
 
-  home.stateVersion = "23.11"; # Adjust to your current Nixpkgs/Home Manager version
+	# Necessary for using flakes on this system.
+	nix.settings.experimental-features = "nix-command flakes";
 
-  programs.home-manager.enable = true;
+	# Create /etc/zshrc that loads the nix-darwin environment.
+	programs.zsh.enable = true;  # default shell on catalina
+	# programs.fish.enable = true;
 
-  home.packages = [
-    pkgs.brew # Needed to run Homebrew-installed binaries
-  ];
+	# Set Git commit hash for darwin-version.
+	system.configurationRevision = self.rev or self.dirtyRev or null;
 
-  # Install yabai using homebrew
-  homebrew = {
-    enable = true;
-    brews = [
-      "koekeishiya/formulae/yabai"
-    ];
-    taps = [
-      "koekeishiya/formulae"
-    ];
-  };
+	# Used for backwards compatibility, please read the changelog before changing.
+	# $ darwin-rebuild changelog
+	system.stateVersion = 4;
 
-  # Optionally add yabai config file
-  home.file.".yabairc".text = ''
-    yabai -m config layout bsp
-    yabai -m config window_gap 10
-    yabai -m config top_padding 10
-    yabai -m config bottom_padding 10
-    yabai -m config left_padding 10
-    yabai -m config right_padding 10
-  '';
+	# The platform the configuration will be used on.
+	nixpkgs.hostPlatform = "x86_64-darwin";
 }
-
