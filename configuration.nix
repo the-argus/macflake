@@ -10,7 +10,7 @@
 			mouse_follows_focus = "off";
 			window_placement    = "second_child";
 			window_opacity      = "off";
-			top_padding         = 36;
+			top_padding         = 10; # 36
 			bottom_padding      = 10;
 			left_padding        = 10;
 			right_padding       = 10;

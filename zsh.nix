@@ -289,6 +289,8 @@ in {
       eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
 
       eval "$(zoxide init zsh)"
+
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     '';
   };
 }
