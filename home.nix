@@ -37,6 +37,7 @@
       neofetch
       alacritty
       fzf
+      repgrep
 
       # What mac-app-util does for you, is that you can also just
       # install derivations here which have a `/Applications/`
