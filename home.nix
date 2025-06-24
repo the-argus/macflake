@@ -1,4 +1,4 @@
-{ pkgs, mac-app-util, username, ... }: {
+{ pkgs, mac-app-util, username, nvim-config, ... }: {
   imports = [
     mac-app-util.homeManagerModules.default
     ./zsh.nix
@@ -38,6 +38,16 @@
       alacritty
       fzf
       repgrep
+      (nvim-config.packages.${pkgs.system}.mkNeovim {
+       pluginsArgs = {
+         # bannerPalette = config.system.theme.scheme;
+       };
+       wrapperArgs = {
+         useQmlls = false;
+         viAlias = true;
+         vimAlias = true;
+       };
+      })
 
       # What mac-app-util does for you, is that you can also just
       # install derivations here which have a `/Applications/`

@@ -2,6 +2,7 @@
   description = "Example Darwin system flake";
 
   inputs = {
+    nixpkgs-nvim-pinned.url = "github:nixos/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -11,9 +12,13 @@
 	url = "github:hraban/mac-app-util";
 	inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvim-config = {
+      url = "github:the-argus/nvim-config";
+      inputs.nixpkgs.follows = "nixpkgs-nvim-pinned";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util }:
+  outputs = inputs@{ self, nvim-config, nix-darwin, nixpkgs, home-manager, mac-app-util, ... }:
   let
     	username = "argus";
     	system = "aarch64-darwin";
@@ -46,7 +51,11 @@
 		home-manager.useGlobalPkgs = true;
 		home-manager.useUserPackages = true;
 		home-manager.users.${username} = import ./home.nix;
-		home-manager.extraSpecialArgs = { inherit mac-app-util; inherit username; };
+		home-manager.extraSpecialArgs = {
+			inherit mac-app-util;
+			inherit username;
+			inherit nvim-config;
+		};
 	}
       ];
     };
