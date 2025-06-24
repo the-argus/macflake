@@ -31,7 +31,6 @@
 
   home.packages = with pkgs; [
       ripgrep
-      neovim
       starship
       zoxide
       neofetch
