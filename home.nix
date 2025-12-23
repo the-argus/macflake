@@ -20,6 +20,10 @@
     enable = true;
     settings.show_program_path = true;
   };
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
   
   programs.vim = {
     enable = true;
