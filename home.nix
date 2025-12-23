@@ -34,6 +34,7 @@
   };
 
   home.packages = with pkgs; [
+      vimv-rs
       ripgrep
       starship
       zoxide
