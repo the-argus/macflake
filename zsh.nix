@@ -291,6 +291,14 @@ in {
       eval "$(zoxide init zsh)"
 
       eval "$(/opt/homebrew/bin/brew shellenv)"
+
+      if [ ! -f "$HOME/.cargo/env" ]; then
+          :
+      elif [ "$(sha256sum "$HOME/.cargo/env" | awk '{print $1}')" = "8566c299618b2cd21dd0c2bf98b416819a05bc484418691b72635cca342f7343" ]; then
+          . "$HOME/.cargo/env"
+      else
+          echo "unexpected contents in $HOME/.cargo/env, not sourcing it. update nix config with an approved hash" >&2
+      fi
     '';
   };
 }
