@@ -155,7 +155,7 @@ in {
   '';
 
   programs.zsh = let
-    dDir = ".config/zsh";
+    dDir = "${config.xdg.configHome}/zsh";
   in {
     enable = true;
 
@@ -177,18 +177,18 @@ in {
       share = false; # dont share history between terminal sessions
     };
 
-    shellAliases =
-      {
-        # regular aliases
-        nf = "neofetch";
-        search = "nix search nixpkgs";
-        fim = "nvim $(fd -t f | fzf)";
-        vim = "nvim";
+    shellAliases = {
+      # regular aliases
+      nf = "fastfetch";
+      neofetch = "fastfetch";
+      search = "nix search nixpkgs";
+      fim = "nvim $(fd -t f | fzf)";
+      vim = "nvim";
 
-        rm = "rm -i";
-        sudo = "sudo -A";
-        cd = "z";
-      };
+      rm = "rm -i";
+      sudo = "sudo -A";
+      cd = "z";
+    };
 
     zplug = {
       enable = false;

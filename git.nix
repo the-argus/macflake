@@ -1,7 +1,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "Ian McFarlane";
-    userEmail = "ian.mcfarlane@kdab.com";
+    settings.user = {
+      name = "Ian McFarlane";
+      email = "ian.mcfarlane@kdab.com";
+    };
   };
 }

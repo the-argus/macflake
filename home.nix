@@ -44,7 +44,7 @@
     ripgrep
     starship
     zoxide
-    neofetch
+    fastfetch
     alacritty
     fzf
     repgrep

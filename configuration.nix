@@ -4,7 +4,7 @@
 	system.primaryUser = "argus";
 
 	services.yabai = {
-		enable = true;
+		enable = false;
 		config = {
 			focus_follows_mouse = "off";
 			mouse_follows_focus = "off";
