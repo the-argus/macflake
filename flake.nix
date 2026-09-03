@@ -2,7 +2,6 @@
   description = "Example Darwin system flake";
 
   inputs = {
-    nixpkgs-nvim-pinned.url = "github:nixos/nixpkgs?rev=d70bd19e0a38ad4790d3913bf08fcbfc9eeca507";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,8 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvim-config = {
-      url = "github:the-argus/nvim-config";
-      inputs.nixpkgs.follows = "nixpkgs-nvim-pinned";
+      url = "git+https://github.com/the-argus/nvim-config";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-core = {

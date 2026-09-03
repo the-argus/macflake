@@ -1,4 +1,10 @@
-{ pkgs, mac-app-util, username, nvim-config, ... }: {
+{
+  pkgs,
+  mac-app-util,
+  username,
+  nvim-config,
+  ...
+}: {
   imports = [
     mac-app-util.homeManagerModules.default
     ./zsh.nix
@@ -24,38 +30,33 @@
   home.sessionVariables = {
     EDITOR = "nvim";
   };
-  
+
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [ vim-surround ];
+    plugins = with pkgs.vimPlugins; [vim-surround];
     extraConfig = ''
       set clipboard=unnamedplus
     '';
   };
 
   home.packages = with pkgs; [
-      vimv-rs
-      ripgrep
-      starship
-      zoxide
-      neofetch
-      alacritty
-      fzf
-      repgrep
-      (nvim-config.packages.${pkgs.system}.mkNeovim {
-       pluginsArgs = {
-         # bannerPalette = config.system.theme.scheme;
-       };
-       wrapperArgs = {
-         useQmlls = false;
-         viAlias = true;
-         vimAlias = true;
-       };
-      })
+    vimv-rs
+    ripgrep
+    starship
+    zoxide
+    neofetch
+    alacritty
+    fzf
+    repgrep
+    (nvim-config.packages.${pkgs.system}.mkNeovim {
+      viAlias = true;
+      vimAlias = true;
+      latestZls = pkgs.zls;
+    })
 
-      # What mac-app-util does for you, is that you can also just
-      # install derivations here which have a `/Applications/`
-      # directory, and it will be available in Spotlight and in your App
-      # Launcher, no further configuration needed:
+    # What mac-app-util does for you, is that you can also just
+    # install derivations here which have a `/Applications/`
+    # directory, and it will be available in Spotlight and in your App
+    # Launcher, no further configuration needed:
   ];
 }
