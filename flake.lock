@@ -3,16 +3,16 @@
     "brew-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1786945682,
-        "narHash": "sha256-VBESSoJccikdhxh3vp3SQeG7cZXTOulMvVkoSqNDEhs=",
+        "lastModified": 1787796349,
+        "narHash": "sha256-5s+MJAFyemD6lvrtL2c0jQ7P/XChdx1MPXzoCaQY+ic=",
         "owner": "Homebrew",
         "repo": "brew",
-        "rev": "5b90e281d4e0c8fbd6ca4d8358276fb305b8d0bd",
+        "rev": "3e3da86e4eaccd23f4ce43df9b0a31b16c707347",
         "type": "github"
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "6.0.18",
+        "ref": "6.0.20",
         "repo": "brew",
         "type": "github"
       }
@@ -118,11 +118,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788355065,
-        "narHash": "sha256-gAz5oTI7ur34CfuakQduiQd/2ZhO62Bn2XXg08nZYYQ=",
+        "lastModified": 1788487777,
+        "narHash": "sha256-Ro/e1N4ZR8/XaFF+sF9SgfPK79HM5YNEppzFj8p+0Ak=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d9d750e4fc11c10cab2da677bdd31e427f3a3a71",
+        "rev": "693e8ce0fb240a73c116a03cfd7b19269c87af88",
         "type": "github"
       },
       "original": {
@@ -134,11 +134,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1788441028,
-        "narHash": "sha256-+Q0Co9Qhp+OBRE0Jj3mGJWpsJDjNoLnLZ6c7RYUerpw=",
+        "lastModified": 1788485729,
+        "narHash": "sha256-srNdPeWsRvt1GwSD1ISFx/C7iWSq5PHfg02JJRk5Pyw=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "c662c0b18f7c59e25fe2aa1cb02f60e3306bf5e7",
+        "rev": "b25098d91b0a86319582275d3c959abb3b22c0ed",
         "type": "github"
       },
       "original": {
@@ -150,11 +150,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1788441525,
-        "narHash": "sha256-HaWFMF+VFHjmeULvVIN+LWkwiiUxWOHE9Y+Y4H398c4=",
+        "lastModified": 1788491160,
+        "narHash": "sha256-Y6/Zu6apsuwBuM43pPy/Kua9AxUzrFlhhlkxH7m02gk=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "1825d6e2905808659a80e585f48fa07dfd74cd1b",
+        "rev": "7354b53a2a4b322dba5efa1507852b704ba86d2a",
         "type": "github"
       },
       "original": {
@@ -213,11 +213,11 @@
         "brew-src": "brew-src"
       },
       "locked": {
-        "lastModified": 1787330919,
-        "narHash": "sha256-LslMncqN7uOOH5S88WZtO/EVt2HwD8ltUnfyANk+mC0=",
+        "lastModified": 1788444135,
+        "narHash": "sha256-ChwTDZPvTmEgZdS30dUfgdXlzAPtZAUWwEH/PfDXZmg=",
         "owner": "zhaofengli",
         "repo": "nix-homebrew",
-        "rev": "b00218e4aec0e5bf07d61a0bb13f842faa582d7b",
+        "rev": "ec8417a617de4d3c739aed40837e308ebd667165",
         "type": "github"
       },
       "original": {
@@ -313,11 +313,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788411085,
-        "narHash": "sha256-lM+3UkbZJl2tjBFBq7H+WAqBspHBSVOTkbzqi5zsGbM=",
+        "lastModified": 1788495094,
+        "narHash": "sha256-8xPTK9belNxndw2ZOWnv65KT/CGlZrlrE+zY8YTZbT4=",
         "ref": "refs/heads/main",
-        "rev": "c0f08c1316adf5cb51d3bc1a9d248dbb3d4724f4",
-        "revCount": 64,
+        "rev": "ac7eb333b8abe33aa0384496b08c709ab474bd40",
+        "revCount": 67,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/the-argus/nvim-config"
