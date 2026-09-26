@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "banner": {
+      "inputs": {
+        "nixpkgs": [
+          "nvim-config",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789527514,
+        "narHash": "sha256-TF5bOwz4hOkOnfNvj2ItBC1nSfzoYtrKFnmjzYlBqT4=",
+        "owner": "the-argus",
+        "repo": "banner.nix",
+        "rev": "ded3b41cb3b6e8528c74f00775f3462c6fb17d6b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "the-argus",
+        "repo": "banner.nix",
+        "type": "github"
+      }
+    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -307,17 +328,18 @@
     },
     "nvim-config": {
       "inputs": {
+        "banner": "banner",
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1788654138,
-        "narHash": "sha256-BgUj+siBZmA4n3xeYnQt5bXPqMqnSkT/eyxvl0AIoyA=",
+        "lastModified": 1790085011,
+        "narHash": "sha256-MrB68JVQf+LcUokqs+2z2wXPGGp4g81sx4or9oG7GuM=",
         "ref": "refs/heads/main",
-        "rev": "c868017e08ba66774b0db222b1a263aa9720d287",
-        "revCount": 79,
+        "rev": "3882f8997768da794ac3239756fefd4f5ce2edad",
+        "revCount": 131,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/the-argus/nvim-config"
